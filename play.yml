@@ -5,7 +5,7 @@
   tasks:
   - name: creating file on all app servers
     file:
-        path: /tmp/data.txt
+        path: /tmp/ansible-job.txt
         state: touch
         owner: "{{ ansible_user }}"
         group: "{{ ansible_user }}"
