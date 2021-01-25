@@ -1,15 +1,12 @@
 ---
-  - name: Playbook
-    hosts: localhost
-    become: yes
-    become_user: root
-    tasks:
-      - name: ensure apache is at the latest version
-        apt:
-          name: apache2
-          state: latest
-      - name: ensure apache is running
-        service:
-          name: apache2
-          state: started
-
+- hosts: all
+  become: true
+  gather_facts: true
+  tasks:
+  - name: creating file on all app servers
+    file:
+        path: /tmp/data.txt
+        state: touch
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: 0777
